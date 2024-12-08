@@ -11,8 +11,7 @@ public class FileReader {
             return new String(Files.readAllBytes(Paths.get(filePath)));
         } catch (IOException e) {
             // 예외 처리
-            System.err.println("Error reading file: " + e.getMessage());
-            return null;
+            throw new IllegalArgumentException("Error reading file: " + e.getMessage());
         }
     }
 }

@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import domain.course.Course;
+import domain.crew.Crew;
 import pairmatching.service.Service;
 import pairmatching.util.FileReader;
 import pairmatching.util.StringParser;
@@ -18,14 +19,24 @@ public class MainController {
 
     public void run() {
         process(this::setUpCrews);
-        process(this::inputFunction);
+        process(this::selectFunction);
+        process(this::selectProgram);
+        process(this::pairMatchingResult);
     }
 
-    private void inputFunction() {
+    private void selectFunction() {
         outputView.printIntroMessage();
-        service.selectFunction(InputView.readLine());
+        String functionKey = service.selectFunction(InputView.readLine());
+    }
+
+    private void selectProgram() {
+
         outputView.printMatchingMessage();
-        service.selectType(InputView.readLine());
+        service.selectType(service.getFunctionKey());
+    }
+
+    private void pairMatchingResult() {
+        Crew.PairMatching(Course.BACKEND);
     }
 
     private void setUpCrews() {
